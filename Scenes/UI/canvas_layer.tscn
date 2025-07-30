@@ -1,0 +1,34 @@
+[gd_scene load_steps=4 format=3 uid="uid://dgr5lpkmhuf8m"]
+
+[ext_resource type="Script" uid="uid://pygytixydvcb" path="res://Scripts/canvas_layer.gd" id="1_lft5s"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d7i54"]
+bg_color = Color(0.706926, 0.0759673, 1.92523e-07, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lft5s"]
+bg_color = Color(0.384258, 0.642751, 0.162535, 1)
+
+[node name="CanvasLayer" type="CanvasLayer"]
+script = ExtResource("1_lft5s")
+
+[node name="Score" type="Label" parent="."]
+anchors_preset = -1
+anchor_left = 0.965278
+anchor_right = 1.0
+anchor_bottom = 0.0354938
+offset_left = -46.0
+offset_top = 12.0
+offset_right = -7.0
+offset_bottom = 12.0
+grow_horizontal = 0
+text = "Score: 100"
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+offset_left = 8.0
+offset_top = 11.0
+offset_right = 206.0
+offset_bottom = 46.0
+theme_override_styles/background = SubResource("StyleBoxFlat_d7i54")
+theme_override_styles/fill = SubResource("StyleBoxFlat_lft5s")
+value = 100.0
+show_percentage = false

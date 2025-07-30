@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://pdpjhh670kfw"]
+
+[ext_resource type="Script" uid="uid://b7w5it01s1pfr" path="res://Scenes/Projectiles/Player/projectile.gd" id="1_r6cp1"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ldvs7"]
+albedo_color = Color(0.957031, 0.201057, 0.20077, 1)
+emission_enabled = true
+emission = Color(0.994979, 0, 0.114266, 1)
+emission_energy_multiplier = 4.15
+
+[sub_resource type="BoxMesh" id="BoxMesh_r6cp1"]
+material = SubResource("StandardMaterial3D_ldvs7")
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_038jj"]
+points = PackedVector3Array(-0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5)
+
+[node name="Projectile" type="Area3D"]
+top_level = true
+script = ExtResource("1_r6cp1")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.104447, 0, 0, 0, 0.115972, 0, 0, 0, 0.368714, 0, 0, 0)
+mesh = SubResource("BoxMesh_r6cp1")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.104447, 0, 0, 0, 0.115972, 0, 0, 0, 0.368714, 0, 0, 0)
+shape = SubResource("ConvexPolygonShape3D_038jj")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

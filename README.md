@@ -81,7 +81,7 @@
 - Delay between waves  
 - Player can survive multiple waves  
 
-### Iteration 5: Polish Core Gameplay (1 week)  
+### Iteration 5: Polish Core Gameplay (2 week)  
 - Smooth controls and animations (if any)  
 - Sound effects (optional)  
 - Bug fixes and balancing  

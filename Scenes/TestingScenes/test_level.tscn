@@ -1,0 +1,76 @@
+[gd_scene load_steps=9 format=3 uid="uid://by7bvn471jejd"]
+
+[ext_resource type="Texture2D" uid="uid://wvuyck8mwgj7" path="res://Assets/Placeholder/Dark/texture_07.png" id="1_8m1qy"]
+[ext_resource type="Script" uid="uid://dkcd536n4toxk" path="res://Scripts/GameManager.gd" id="1_v0mxi"]
+[ext_resource type="PackedScene" uid="uid://johj7xkq5mjy" path="res://Scenes/Player/player.tscn" id="2_8m1qy"]
+[ext_resource type="PackedScene" uid="uid://dgr5lpkmhuf8m" path="res://Scenes/UI/canvas_layer.tscn" id="4_wdasb"]
+[ext_resource type="PackedScene" uid="uid://cq5q806tougrn" path="res://Scenes/Enemies/Enemy/enemy.tscn" id="5_olen2"]
+
+[sub_resource type="Environment" id="Environment_v0mxi"]
+background_mode = 1
+background_color = Color(0.769912, 0.52899, 0.569765, 1)
+fog_enabled = true
+fog_light_color = Color(0.768627, 0.529412, 0.568627, 1)
+fog_sky_affect = 0.73
+fog_height = 80.07
+fog_height_density = -0.3368
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_wdasb"]
+vertices = PackedVector3Array(-62.9624, 0.896975, -42.0298, -62.9624, 0.896975, 35.2202, 17.7876, 0.896975, 35.2202, 17.7876, 0.896975, -42.0298)
+polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8m1qy"]
+albedo_texture = ExtResource("1_8m1qy")
+uv1_triplanar = true
+
+[node name="TestLevel" type="Node3D"]
+script = ExtResource("1_v0mxi")
+
+[node name="Environment" type="Node3D" parent="."]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Environment"]
+transform = Transform3D(1, 0, 0, 0, -0.436346, 0.899779, 0, -0.899779, -0.436346, 0, 30.7591, 0)
+light_energy = 0.515
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Environment"]
+environment = SubResource("Environment_v0mxi")
+
+[node name="player" parent="." instance=ExtResource("2_8m1qy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 1.5, 16)
+
+[node name="CanvasLayer" parent="." instance=ExtResource("4_wdasb")]
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+navigation_mesh = SubResource("NavigationMesh_wdasb")
+
+[node name="Floor" type="Node3D" parent="NavigationRegion3D"]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="NavigationRegion3D/Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.5745, -3.67651, -3.41966)
+use_collision = true
+size = Vector3(81.7759, 8.35303, 78.2202)
+material = SubResource("StandardMaterial3D_8m1qy")
+
+[node name="Enemy" parent="NavigationRegion3D" instance=ExtResource("5_olen2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+
+[node name="Enemy2" parent="NavigationRegion3D" instance=ExtResource("5_olen2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46.3843, 0.5, 0)
+
+[node name="Enemy3" parent="NavigationRegion3D" instance=ExtResource("5_olen2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46.3843, 0.5, -32.3833)
+
+[node name="Enemy4" parent="NavigationRegion3D" instance=ExtResource("5_olen2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.00592, 0.5, -32.3833)
+
+[node name="Enemy5" parent="NavigationRegion3D" instance=ExtResource("5_olen2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.00592, 0.5, 23.6231)
+
+[node name="Enemy6" parent="NavigationRegion3D" instance=ExtResource("5_olen2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -50.8252, 0.5, 23.6231)
+
+[node name="Enemy7" parent="NavigationRegion3D" instance=ExtResource("5_olen2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.40991, 0.5, 23.6231)
+
+[node name="Enemy8" parent="NavigationRegion3D" instance=ExtResource("5_olen2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.40991, 0.5, -15.4616)

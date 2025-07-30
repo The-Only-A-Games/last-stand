@@ -1,0 +1,44 @@
+[gd_scene load_steps=5 format=3 uid="uid://cq5q806tougrn"]
+
+[ext_resource type="Script" uid="uid://cecvaiokab3jl" path="res://Scenes/Enemies/Enemy/enemy.gd" id="1_g6w2h"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_dppdf"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_g6w2h"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_g6w2h"]
+height = 0.275
+
+[node name="Enemy" type="CharacterBody3D" groups=["enemies"]]
+script = ExtResource("1_g6w2h")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("CapsuleMesh_dppdf")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_g6w2h")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+
+[node name="MaleeAttackPoint" type="Area3D" parent="." groups=["enemies"]]
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="MaleeAttackPoint"]
+transform = Transform3D(5.14155, 0, 0, 0, 5.14155, 0, 0, 0, 5.14155, 0, 0.935731, 0)
+shape = SubResource("CylinderShape3D_g6w2h")
+
+[node name="DetectPlayer" type="RayCast3D" parent="." groups=["enemies"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.40871, 0)
+target_position = Vector3(0, 0, -7)
+
+[node name="Marker" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.40403, -0.663681)
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 1.5
+autostart = true
+
+[connection signal="body_entered" from="MaleeAttackPoint" to="." method="_on_malee_attack_point_body_entered"]
+[connection signal="body_exited" from="MaleeAttackPoint" to="." method="_on_malee_attack_point_body_exited"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
